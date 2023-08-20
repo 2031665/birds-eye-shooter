@@ -1,0 +1,1 @@
+this is the game Diary here i will put down the stuff that i go through my developing journey.
