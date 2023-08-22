@@ -22,4 +22,20 @@ transform.position = Vector2.MoveTowards(transform.position, playerPos.position,
 
 this is what we have atm ![Alt text](image-1.png)
 
-now it is time to make the enemy spawn randomly!
+23/08/2023
+to create randomly spawning enemies i would have to reuse the enemy GameObject, aperantly there is something called Prefabs in Unity2D, this Prefab component allows me to reuse GameObjects over and over again when it is needed.
+
+i have initialized many spawnpoints which surrounds all around the map (total of 41 spawners). this is how it looks: ![Alt text](image-2.png) all the shown red diamonds are the spawning points of the enemies and they are triggered randomly.
+To triger these points randomly to spawn enemies, i wrote a spawn() method which chooses a random spawner to make the enemy spawn in that random number spawner, and after the random spawner is set, Instantiate inbuilt method will create the enemyPrefab in the randomly chosen spawn point.
+
+int randomPosition =  Random.Range(0, spawnerPoints.Length); 
+(this line will output a number between 0 and the amount of spawnerPoints which is 41.)
+
+ GameObject newEnemy = Instantiate(enemyPrefab, spawnerPoints[randomPosition].position, Quaternion.identity); (this line will create the enemyPrefab object in the randomly chosen spawn.point.)
+
+ after the spawning method is finished we need to keep calling this spawn() method repeadetly. Unity2D provides a method thats called InvokeRepeating("function",first_time_call, interval) that takes in the function name that we want to repeat, the first time when it will be called and the repeat rate of the function as parameters. this is the line of code that is used:
+
+ InvokeRepeating("spawn",0.1f, interval); (calling spawn method for the first time in 0.1f and it will repeat it with the rate of interval variable which is initialized in the Unity2D UI which is 3.0)
+
+ the enemy spawning times could be played around later on to make the perfect gameplay
+ 
