@@ -31,11 +31,65 @@ To triger these points randomly to spawn enemies, i wrote a spawn() method which
 int randomPosition =  Random.Range(0, spawnerPoints.Length); 
 (this line will output a number between 0 and the amount of spawnerPoints which is 41.)
 
- GameObject newEnemy = Instantiate(enemyPrefab, spawnerPoints[randomPosition].position, Quaternion.identity); (this line will create the enemyPrefab object in the randomly chosen spawn.point.)
+GameObject newEnemy = Instantiate(enemyPrefab, spawnerPoints[randomPosition].position, Quaternion.identity); (this line will create the enemyPrefab object in the randomly chosen spawn.point.)
 
- after the spawning method is finished we need to keep calling this spawn() method repeadetly. Unity2D provides a method thats called InvokeRepeating("function",first_time_call, interval) that takes in the function name that we want to repeat, the first time when it will be called and the repeat rate of the function as parameters. this is the line of code that is used:
+after the spawning method is finished we need to keep calling this spawn() method repeadetly. Unity2D provides a method thats called InvokeRepeating("function",first_time_call, interval) that takes in the function name that we want to repeat, the first time when it will be called and the repeat rate of the function as parameters. this is the line of code that is used:
 
- InvokeRepeating("spawn",0.1f, interval); (calling spawn method for the first time in 0.1f and it will repeat it with the rate of interval variable which is initialized in the Unity2D UI which is 3.0)
+InvokeRepeating("spawn",0.1f, interval); (calling spawn method for the first time in 0.1f and it will repeat it with the rate of interval variable which is initialized in the Unity2D UI which is 3.0)
 
- the enemy spawning times could be played around later on to make the perfect gameplay
- 
+the enemy spawning times could be played around later on to make the perfect gameplay
+
+24/08/2023
+i have rescaled the game map and the characters. here is how it looks now ![Alt text](image-3.png). my plan is to add the shooting feature and enemies death after getting shot at, and maybe add an main menu to make it look more like an app.
+
+the main character now has a weapon that can shoot, the direction of the weapon follows the cursor, however implementing this feature was a little more challanging that i thought. 
+
+to get the mouse position on to the game i have used an inbult method called ScreenToWorldPoint() which transforms a point from screen to game space.
+inside this method Vector3 is used to get the current position of the mouse on the screen space. As a result of this method a new Vector3 will be returned showing the new game space position of the mouse. down below is the code that was created 
+
+mousePosition = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, transform.position.z));
+
+NOTE:(Vector3 has 3 arguments which are X,Y and Z axis. However since our game is 2D we only require the first two parameters which are X and Y Axis, so we just use the default Z value.)
+
+we later assign this new game space position to our crosshair so that the crosshair follows the cursor. here is that line of code:
+
+cross.transform.position = new Vector3(mousePosition.x, mousePosition.y, transform.position.z);
+
+the gun also requires to rotate depending on the direction of the mouses postion, so i created an simple calculation where i have subracted the position of the weapon from the current position of the mouse in game space, and used the  transform.right to move the direction of the gun to the mouse point. this  transform.right moves the X axis(The red arrow) of the of the gun considering its rotation.(https://docs.unity3d.com/ScriptReference/Transform-right.html#:~:text=right%2C%20Transform.,red%20arrow's%20axis%20(X).) REFERANCE
+
+here is an example of how it works:
+![Alt text](image-6.png) -> ![Alt text](image-7.png) -> ![Alt text](image-8.png) -> ![Alt text](image-9.png)
+
+
+here is a better visual explanation ![Alt text](image-5.png) in this case the coordinate of the mouse will be (7,2) and the coordinate of the gun is (0,0)
+
+(in this game the character does not move so the gun always stays in the same position(0,0) which mean that only the position of the Mouse is enough to get the required coordinates, i could also just remove the calculations but i still left it in there just incase in the future i want to move the character as well. than these calculations will be needed.)
+
+here is the code that does the rotating:
+
+Vector2 targetDirection = new Vector2(mousePosition.x - transform.position.x, mousePosition.y - transform.position.y);
+
+transform.right = targetDirection;
+
+the way how the shooting works is by inputing a left-click with our mouse (in future muse headband jaw clench.) so a simple statement was done to check if a left-click input was done, if so it would triger the shoot(); method which instantiates the prefab bullet.
+
+NOTE_TO_ME: put down the code down here in report.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+IMPORTANT: since the Python code we have written before helps us use the mouse with our eyes all of the inputs in this game will be provided with our eyes.
+
