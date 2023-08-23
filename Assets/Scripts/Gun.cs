@@ -8,6 +8,8 @@ public class Gun : MonoBehaviour
     private Vector3 mousePosition;                      // initializing a Vector3 to get the mouse position.
     public GameObject bullet;                           // initialized the GameObject bullet so that the prefab bullet can be added on the Unity2D UI
     public GameObject cross;                            // initialized the GameObject cross so that the cross can be added to the gun on Unity2D
+    public Transform barrel;
+    public float bullet_speed;
 
     void Start()
     {
@@ -31,6 +33,6 @@ public class Gun : MonoBehaviour
     }
 
     private void shoot(){
-        Instantiate(bullet, transform.position, Quaternion.identity);               // instantiates the bullet
+       var firedBullet =  Instantiate(bullet, barrel.position, barrel.rotation);               // instantiates the bullet
     }
 }

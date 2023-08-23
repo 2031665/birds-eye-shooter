@@ -7,6 +7,7 @@ public class Enemy_controller : MonoBehaviour
 
     private Transform playerPos;
     public float speed;
+    public int health = 1;
 
     void Start()
     {
@@ -20,5 +21,17 @@ public class Enemy_controller : MonoBehaviour
         float speed_of_enemy = speed * Time.deltaTime;
         transform.position = Vector2.MoveTowards(transform.position, playerPos.position, speed_of_enemy);       // making the character move towards to the players position in the given speed.
         // Vector2 is geting the direction to calculate.
+
+        if(health <= 0){
+            Destroy(gameObject);
+        }
     }
+
+    private void OnTriggerEnter2D(Collider2D col){
+        if(col.tag == "Bullet"){
+            health--;
+        }
+
+    }
+
 }

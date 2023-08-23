@@ -75,7 +75,7 @@ the way how the shooting works is by inputing a left-click with our mouse (in fu
 
 NOTE_TO_ME: put down the code down here in report.
 
-
+next i will be creating the bullet features. the bullet created at the moment was not going anywhere, also i will create the enemy health stuff. i have done the code but i will do the explaining tomorrow!!!!DONT FORGET!!!!!
 
 
 
