@@ -7,7 +7,7 @@ public class Enemy_controller : MonoBehaviour
 
     private Transform playerPos;
     public float speed;
-    public int health = 1;
+    public int health = 1;                              //this creates the health of the enemy
 
     void Start()
     {
@@ -27,11 +27,9 @@ public class Enemy_controller : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D col){
-        if(col.tag == "Bullet"){
-            health--;
+    private void OnTriggerEnter2D(Collider2D col){      //
+        if(col.tag == "Bullet"){                        //if the tag that enemt collides with is "Bullet" it will decreese the health of the enemy. 
+            health--;                                   
         }
-
     }
-
 }

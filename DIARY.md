@@ -75,16 +75,42 @@ the way how the shooting works is by inputing a left-click with our mouse (in fu
 
 NOTE_TO_ME: put down the code down here in report.
 
-next i will be creating the bullet features. the bullet created at the moment was not going anywhere, also i will create the enemy health stuff. i have done the code but i will do the explaining tomorrow!!!!DONT FORGET!!!!!
+next i will be creating the bullet features. i did created the bullet but the created bullet does not function that well. also need to create the enemy health stuff. 
 
 
+25/04/2023
+the current bullet features have no movement at all, they are created but they are not going anywhere. to implement the features of the bullets i have created a controller(Bullet_Controller). 
+
+so to make the bullets move i could use the inbuilt method MoveTowards(); which we have used before when creating enemies, but this time the bullets needs to go towards where the Mouse will be at. So to get the move position in game space ive  used ScreenToWorldPoint(); in built method which i used before during implementing the Gun. here is that line of code:
+
+target = Camera.main.ScreenToWorldPoint(Input.mousePosition); (gets the mouse point on screen and transfroms it to game space)
+
+now that the position of the mouse is initialized in the variable "target" this variable will be used in the MoveTowards(); method. here is what the code looks like. this method will make the bullet move from its current position to the where the mouse was clicked at.
+
+transform.position = Vector2.MoveTowards(transform.position, target, speed * Time.deltaTime); (the bullet move from its current position to the where the mouse was clicked on the game space, the bullet will move in the given speed, which was given on the Unity2D UI and in this case it is 5)
+
+however now a different issue we are against is that the bullet dont dissappear after they are shot, they go to the point where they were expected but they dont dissapear so i used the Destroy(object,time); method to destroy the gameObject which is the bullet in 2.0f time. here is the line of code:
+
+Destroy(gameObject, 2.0f);
+
+now the bullet disappears 2 seconds after it is shot, but still they can go over board the map or don't disappear after hitting an enemy. i did some research and apperantly there is an Function that Unity2D provides which is the OnTriggerEnter2D(Collider2D col). to use this function properly i had to learn about trigger objects. Trigger objects are enabled from the BoxCollider2D component, these objects are able to check the collisions but they require the OnTriggerEnter2D(); function. if this function is not used it will just go through the object. 
+
+inside this OnTriggerEnter2D(); function is an if statement that checks if the GameObject bullet collides with other GameObjects that has the tag of "Wall" or "Enemy" it will destroy the bullet. here is that OnTriggerEnter2D(); function:
+
+the tags for these where created and applied in Unity2D Components section.
+
+![Alt text](image-10.png)
+
+another important thing about trigger object is that trigger events only works when one of the colliding GameObject have the Rigidbody2D Component.(both can have it if it is necessary, in my case the Enemy and the bullets require to have the Rigidbody2D because they are required to have the physics applied on them inorder to function properly, but the walls do not have this component, and they function the same.)
 
 
+i have also implemented health functionality to the enemies. before the enemies would not die when they got shot, but now they disappear when they get shot once(the enemy health can change). to achieve this, first i initialized the health of the enemies to an integer value (which is 1), next thing was to detect the collition of the bullets with the enemies, i have also implemented this using the trigger objects with OnTriggerEnter2D(); function with an if statement inside, this time when the enemies were hit by a bullet their health would decrease by one. here is how the OnTriggerEnter2D(); function looks like for Enemies:
 
+![Alt text](image-11.png)
 
+however after the enemies health is zero they need to disappear so i made another if statement in the Update function.
 
-
-
+![Alt text](image-12.png)
 
 
 

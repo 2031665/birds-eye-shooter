@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5862264100124575516}
   - component: {fileID: 3406269941574981106}
   - component: {fileID: 8566273274900278110}
-  - component: {fileID: 4966893461178576551}
+  - component: {fileID: -522497599878648684}
   m_Layer: 0
   m_Name: Bullet
   m_TagString: Bullet
@@ -116,7 +116,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -135,7 +135,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
---- !u!50 &4966893461178576551
+--- !u!50 &-522497599878648684
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
