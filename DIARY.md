@@ -112,10 +112,21 @@ however after the enemies health is zero they need to disappear so i made anothe
 
 ![Alt text](image-12.png)
 
+04/09/2023
+the GUI is finished and there the eye-tracker and gui works parallely, also the game can be runned from this GUI, however there were some issues with the gameplay such as there is no pause, so i have implemented a pause functionality to the game.
 
+i had to create a UI component in the hierarchy named Canvas which contained the PauseMenu panel which also contains the buttons that will do the quit game or resume functions. however to control the pause menu i created a new script called PauseMenu.cs to keep track of if the game is paused or not i have created a public isGamePaused boolean variable which can be accessible from other scripts.
 
+atm i have used the ESC key as in for pause, but i would like to change this into a button in the future, however when the ESC is hit the isGamePaused will turn to true by the Resume() and Pause() methods:
+![Alt text](image-15.png)
+![Alt text](image-13.png) the Resume() method is activated when the isGamePaused is false and will inactivate the pauseMenuUI game object resulting on removal of the pause menu and will resume the time by setting Time.timeScale = 1f 
+the Pause will do everything opposite of the Resume()
+![Alt text](image-14.png) the Pause() method is activated when the isGamePaused is true which will set active the PauseMenuUI gameobject causing the pause panel to pop up on the screen and stop the time in the game with Time.timeScale = 0f variable.
 
+however the game is paused but still some of the functionalities can still be triggered such as the shooting of the gun, the user was still able to shoot after the game was paused, but the bullets didnt go anywhere since the time was stopped
+so i have disabled the guns shooting function by an if statement.![Alt text](image-16.png)(after the game is paused the other functionalities such as shooting was still working so an if statement was created in the Gun.cs scripts update() method which was used for the shooting of the gun)
 
+functionalitiy of quiting the game was done by a small and easy QuitGame method which was assigned to the Quit button on the pause menu.![Alt text](image-17.png) and here is the method ![Alt text](image-18.png)
 
 IMPORTANT: since the Python code we have written before helps us use the mouse with our eyes all of the inputs in this game will be provided with our eyes.
 
