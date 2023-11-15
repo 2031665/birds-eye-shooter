@@ -19,7 +19,7 @@ public class Gun : MonoBehaviour
 
     void Update()
     {
-        if(!PauseMenu.isGamePaused){                                                                                                          // so that the gun wont shoot during the pause.
+        if(!PauseMenu.isGamePaused && !GameOver.isGameOver){                                                                                                          // so that the gun wont shoot during the pause.
             mousePosition = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, transform.position.z)); // this inbuilt ScreenToWorldPoint transforms the point from screen space to world space 
             
             cross.transform.position = new Vector3(mousePosition.x, mousePosition.y, transform.position.z);                             //setting up the crosshairs position same as where the mouse is at.

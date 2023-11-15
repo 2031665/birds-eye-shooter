@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Enemy_controller : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class Enemy_controller : MonoBehaviour
     private Transform playerPos;
     public float speed;
     public int health = 1;                              //this creates the health of the enemy
+    public static int enemyPoints=100;
 
     void Start()
     {
@@ -24,12 +26,15 @@ public class Enemy_controller : MonoBehaviour
 
         if(health <= 0){
             Destroy(gameObject);
+            Debug.Log("ENEMY DEAD");
+            PointManager.currentPoint+=1;
         }
     }
 
     private void OnTriggerEnter2D(Collider2D col){      //
         if(col.tag == "Bullet"){                        //if the tag that enemt collides with is "Bullet" it will decreese the health of the enemy. 
-            health--;                                   
+            health--;                              
         }
     }
+
 }

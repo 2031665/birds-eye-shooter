@@ -150,6 +150,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 1
   health: 1
+  enemyPoints: 100
+  pointsText: {fileID: 0}
 --- !u!58 &3696567044383434110
 CircleCollider2D:
   m_ObjectHideFlags: 0
