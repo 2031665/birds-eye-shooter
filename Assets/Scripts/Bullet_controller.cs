@@ -21,7 +21,7 @@ public class Bullet_controller : MonoBehaviour
     }
 
 	private void OnTriggerEnter2D(Collider2D col){                      
-		if(col.tag=="Wall" || col.tag =="Enemy"){                       // when the Bullet collides with the GameObjects with the tag "Wall" or "Bullet" 
+		if(col.tag=="Wall" || col.tag =="Enemy"){                       // when the Bullet collides with the GameObjects with the tag "Wall" or "Enemy" 
             Destroy(gameObject);                                        // the bullet game object will disappear.
         }
     }	
