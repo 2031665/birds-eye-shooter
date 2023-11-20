@@ -18,9 +18,9 @@ public class PointManager : MonoBehaviour
     {
         pointsText.text = "Score: "+ Mathf.Round(currentPoint);
     }
-         public void addPoint(){
 
-        currentPoint+=Enemy_controller.enemyPoints;
-        pointsText.text = currentPoint.ToString("");  
-    }
+    // public void addPoint(){
+    //     //currentPoint+=Enemy_controller.enemyPoints;
+    //     //pointsText.text = currentPoint.ToString("");  
+    // }
 }

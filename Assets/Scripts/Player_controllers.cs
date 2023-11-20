@@ -15,18 +15,14 @@ public class Player_controller : MonoBehaviour
     public GameObject GameOverUI;
 
     public Image healthBar;
+
     public static float characterHealth=3f;
-    // public static int maxHealth = 3;
 
-    private void Start(){
-
-    }
-
-    private void OnTriggerEnter2D(Collider2D col){      //
+    public void OnTriggerEnter2D(Collider2D col){
         if (col.tag=="Enemy"){                      
             characterHealth--;
             healthBar.fillAmount = characterHealth/3f;
-            Destroy(GameObject.FindGameObjectWithTag("Enemy"));
+            Enemy_controller.DestroyEnemy();
             Debug.Log("Health: " + characterHealth);        
             if(characterHealth <= 0){
                 GameIsOver();
