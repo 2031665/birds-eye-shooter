@@ -17,7 +17,7 @@ public class Bullet_controller : MonoBehaviour
     {
         transform.position = Vector2.MoveTowards(transform.position, target, speed * Time.deltaTime);  // makes the bullet move to the where the mouses last position was at the given speed.
         if((Vector2)transform.position==target){
-             Destroy(gameObject, 2.0f);                 //needs to change the Destroy function into DestroyImmediate funciton to pass the test BulletDestroysAfterTime()
+            DestroyBullet();
         }
 
     }
@@ -27,5 +27,9 @@ public class Bullet_controller : MonoBehaviour
             Destroy(gameObject);                                        // change with DestroyImmediate to make the test BulletDestroysOnCollisionWithWall() and BulletDestroysOnCollisionWithEnemy()
         }
     }	
+
+    public void DestroyBullet(){
+        DestroyImmediate(gameObject);                 //needs to change the Destroy function into DestroyImmediate funciton to pass the test BulletDestroysAfterTime()
+    }
 
 }

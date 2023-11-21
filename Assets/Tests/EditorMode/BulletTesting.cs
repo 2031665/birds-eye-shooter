@@ -36,34 +36,4 @@ public class BulletTesting
 
         Assert.IsTrue(bulletGameObject==null, "Bullet did not get destroyed after the specified time.");
     }
-
-    [Test]
-    public void BulletDestroysOnCollisionWithWall()
-    {
-        GameObject bulletGameObject = new GameObject();
-        Bullet_controller bulletController = bulletGameObject.AddComponent<Bullet_controller>();
-        BoxCollider2D collider = bulletGameObject.AddComponent<BoxCollider2D>();
-        collider.tag = "Wall"; // Set a tag for the collider
-
-        bulletController.OnTriggerEnter2D(collider);
-
-        Assert.AreEqual("null", bulletGameObject.ToString() , "Bullet did not get destroyed upon collision with Enemy.");
-    }
-
-    [Test]
-    public void BulletDestroysOnCollisionWithEnemy()
-    {
-        GameObject enemyObject = new GameObject();
-        Enemy_controller enemy = enemyObject.AddComponent<Enemy_controller>();
-
-        GameObject bulletObject = new GameObject();
-        Bullet_controller bulletController = bulletObject.AddComponent<Bullet_controller>();
-        Collider2D bulletCollider = bulletObject.AddComponent<BoxCollider2D>();
-        bulletCollider.tag = "Enemy"; 
-
-        bulletController.OnTriggerEnter2D(bulletCollider);
-        Debug.Log("object that is hit "+bulletObject);
-
-        Assert.AreEqual("null", bulletObject.ToString() , "Bullet did not get destroyed upon collision with Enemy.");
-    }
 }

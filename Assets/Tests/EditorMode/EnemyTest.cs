@@ -58,8 +58,14 @@ public class EnemyTest
         bulletObject.tag = "Bullet";
         Collider2D bulletCollider = bulletObject.AddComponent<BoxCollider2D>();
 
+        int newValueTest = PointManager.currentPoint+Enemy_controller.enemyPoints;
         enemyController.OnTriggerEnter2D(bulletCollider);
 
-        Assert.AreEqual(PointManager.currentPoint, Enemy_controller.enemyPoints, "Points should be awarded on enemy death.");
+        
+
+
+        Assert.AreEqual(PointManager.currentPoint, newValueTest, "Points should be awarded on enemy death.");
+        PointManager.currentPoint = 0;
+
     }
 }
